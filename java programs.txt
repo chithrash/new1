@@ -1,0 +1,158 @@
+program:5
+package chithrashree;
+import java.util.ArrayList;
+import java.util.List;
+public class ListManipulation {
+
+	public static void main(String[] args) {
+		List<String> myList = new ArrayList<>();
+		myList.add(0, "Element1");
+		myList.add(0, "Element2");
+		myList.add("Element3");
+		myList.add("Element4");
+		System.out.println("List before removal: " + myList);
+		String firstElement = myList.remove(0);
+		String lastElement = myList.remove(myList.size() - 1);
+		System.out.println("List after removal: " + myList);
+		System.out.println("First element removed: " + firstElement);
+		System.out.println("Last element removed: " + lastElement);
+		}
+		
+
+
+	}
+
+program:6
+package chithrashree;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+public class IteratorExample {
+
+	public static void main(String[] args) {
+		List<Integer> numbers = new ArrayList<>();
+		numbers.add(1);
+		numbers.add(2);
+		numbers.add(3);
+		numbers.add(4);
+		System.out.println("Using Iterator:");
+		Iterator<Integer> iterator = numbers.iterator();
+		while (iterator.hasNext()) {
+		System.out.println(iterator.next());
+		}
+		System.out.println("\nUsing ListIterator (forward):");
+		ListIterator<Integer> listIterator = numbers.listIterator();
+		while (listIterator.hasNext()) {
+		System.out.println(listIterator.next());
+		}
+		System.out.println("\nUsing ListIterator (backward):");
+		while (listIterator.hasPrevious()) {
+		System.out.println(listIterator.previous());
+		}
+		}
+		
+		
+
+	}
+
+program:7
+
+package chithrashree;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+public class MergeFilesAndDisplay {
+
+	public static void main(String[] args) {
+		String inputFile1 = "E://chithra/1.txt";
+		String inputFile2 = "E://chithra/2.txt";
+		String outputFile = "E://chithra/3.txt";
+		try {
+		BufferedReader reader1 = new BufferedReader(new FileReader(inputFile1));
+		String data1 = "";
+		String line1;
+		while ((line1 = reader1.readLine()) != null) {
+		data1 += line1 + "\n";
+		}
+		reader1.close();
+		BufferedReader reader2 = new BufferedReader(new FileReader(inputFile2));
+		String data2 = "";
+		String line2;
+		while ((line2 = reader2.readLine()) != null) {
+		data2 += line2 + "\n";
+		}
+		reader2.close();
+		String mergedData = data1 + data2;
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+		writer.write(mergedData);
+		writer.close();
+		System.out.println("Merged data written to " + outputFile);
+		System.out.println("Contents of the merged file:");
+		BufferedReader mergedReader = new BufferedReader(new FileReader(outputFile));
+		String line;
+		while ((line = mergedReader.readLine()) != null) {
+		System.out.println(line);
+		}
+		mergedReader.close();
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
+		}
+		
+
+		
+
+	}
+
+program:8
+
+package chithrashree;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+public class ByteArrayExampl {
+
+	public static void main(String[] args) {
+		String userInput = getUserInput();
+		byte[] byteArray = writeToByteArray(userInput);
+
+		readAndDisplayFromByteArray(byteArray);
+		}
+		private static String getUserInput() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter a string: ");
+		return scanner.nextLine();
+		}
+		private static byte[] writeToByteArray(String inputString) {
+		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+		byte[] bytes = inputString.getBytes();
+		byteArrayOutputStream.write(bytes);
+		System.out.println("String has been written to the byte array.");
+		return byteArrayOutputStream.toByteArray();
+		} catch (IOException e) {
+		System.out.println("An error occurred while writing to the byte array: " + e.getMessage());
+		return new byte[0];
+		}
+		}
+		private static void readAndDisplayFromByteArray(byte[] byteArray) {
+		try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray)) {
+		byte[] buffer = new byte[1024];
+		int bytesRead = byteArrayInputStream.read(buffer);
+		String content = new String(buffer, 0, bytesRead);
+		System.out.println("Content read from the byte array: " + content);
+		} catch (IOException e) {
+		System.out.println("An error occurred while reading from the byte array: " + e.getMessage());
+		}
+		}
+		}
+
+
+
+
+
+
+
